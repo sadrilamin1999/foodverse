@@ -5,15 +5,21 @@ import Home from "./conponents/Home";
 import Favourites from "./conponents/Favourites";
 import NotFound from "./conponents/NotFound";
 import Footer from "./conponents/Footer";
+import { useFetch } from "./conponents/hooks/useFetch";
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
   const inputField = useRef(null);
+  const { data: recipes, loading, error } = useFetch(searchQuery);
 
   // search handler
   const searchHander = (e) => {
     e.preventDefault();
-    console.log(searchQuery);
+
+    const searchValue = e.target.search.value;
+    setSearchQuery(searchValue);
+
+    console.log(recipes);
 
     setSearchQuery("");
     inputField.current.blur();
@@ -25,8 +31,8 @@ const App = () => {
         <Navbar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          searchHander={searchHander}
           inputField={inputField}
+          searchHander={searchHander}
         />
         <Routes>
           <Route path="/" element={<Home />} />

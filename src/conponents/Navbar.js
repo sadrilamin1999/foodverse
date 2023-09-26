@@ -15,9 +15,10 @@ const Navbar = ({ searchHander, searchQuery, setSearchQuery, inputField }) => {
       </h2>
       <form className="search-bar" onSubmit={searchHander}>
         <input
+          name="search"
           ref={inputField}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          /*  value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} */
           type="search"
           placeholder="Search recipe..."
           className=" bg-white/75 p-3 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
