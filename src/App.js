@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import Navbar from "./conponents/Navbar";
 import Home from "./conponents/Home";
 import Favourites from "./conponents/Favourites";
+import RecipeItem from "./conponents/RecipeItem";
 import NotFound from "./conponents/NotFound";
 import Footer from "./conponents/Footer";
 
@@ -22,6 +23,7 @@ const App = () => {
 
     setSearchQuery("");
     inputField.current.blur();
+    setRecipes([]);
   };
 
   const getData = async (searchQuery) => {
@@ -55,6 +57,7 @@ const App = () => {
             element={<Home recipes={recipes} loading={loading} error={error} />}
           />
           <Route path="/favourites" element={<Favourites />} />
+          <Route path="/recipe-item/:id" element={<RecipeItem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

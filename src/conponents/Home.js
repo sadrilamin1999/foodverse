@@ -1,11 +1,19 @@
-import React from "react";
-
-const Home = ({ recipes }) => {
+import Recipe from "./Recipe";
+const Home = ({ recipes, loading, error }) => {
   return (
-    <div>
-      {recipes?.map((recipe) => (
-        <li key={recipe.recipe_id}>{recipe.title}</li>
-      ))}
+    <div className="home container mx-auto py-10 flex flex-wrap gap-10 justify-center">
+      {!loading && !error && recipes.length === 0 ? (
+        <p className="text-2xl lg:text-4xl font-bold text-rose-300">
+          Nothing to show, please search somthing!
+        </p>
+      ) : null}
+
+      {loading && <p>{error ? error : "Loading..."}</p>}
+
+      {recipes?.length > 0 &&
+        recipes.map((recipe) => (
+          <Recipe key={recipe.recipe_id} recipe={recipe} />
+        ))}
     </div>
   );
 };
