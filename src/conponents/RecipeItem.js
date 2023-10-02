@@ -1,7 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "./hooks/useFetch";
+import { useEffect, useState } from "react";
 
-const RecipeItem = ({ favouriteHandler }) => {
+const RecipeItem = ({ favouriteHandler, savedItems }) => {
+  const [itemSavedStatus, setItemSavedStatus] = useState(null);
   const { id } = useParams();
 
   const { data: recipe, loading, error } = useFetch(id);
@@ -17,6 +19,10 @@ const RecipeItem = ({ favouriteHandler }) => {
     }
   };
 
+  useEffect(() => {
+    if (!recipe) return;
+    setItemSavedStatus(savedItems.some((item) => item.id === recipe.id));
+  }, [recipe]);
   return (
     <div className="recipe-item container mx-auto py-20 grid grid-cols-1 lg:grid-cols-2 gap-10">
       <div className="left flex flex-col gap-10">
@@ -53,9 +59,15 @@ const RecipeItem = ({ favouriteHandler }) => {
         <div className="btns flex gap-5">
           <button
             onClick={() => favouriteHandler(recipe?.id)}
-            className=" bg-gradient-to-br from-sky-400 to-sky-600 text-sky-50 p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-2 inline-block shadow-md shadow-sky-200 hover:shadow-lg hover:shadow-sky-300 duration-300"
+            className={` p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-2 inline-block shadow-md hover:shadow-lg  duration-300 ${
+              itemSavedStatus
+                ? "bg-gradient-to-br from-orange-400 to-orange-600 text-orange-50  shadow-orange-200 hover:shadow-orange-300"
+                : "bg-gradient-to-br from-sky-400 to-sky-600 text-sky-50  shadow-sky-200 hover:shadow-sky-300"
+            }`}
           >
-            + Save as favourite
+            {itemSavedStatus
+              ? "- Romeve from favourites"
+              : "+ Save as favourite"}
           </button>
           <a
             href={recipe?.source_url}

@@ -1,6 +1,12 @@
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ searchHander, searchQuery, setSearchQuery, inputField }) => {
+const Navbar = ({
+  searchHander,
+  searchQuery,
+  setSearchQuery,
+  inputField,
+  savedItems,
+}) => {
   // nav active styles
   const navActive = ({ isActive }) => {
     return {
@@ -38,11 +44,11 @@ const Navbar = ({ searchHander, searchQuery, setSearchQuery, inputField }) => {
           <NavLink
             style={navActive}
             to="/favourites"
-            className="text-gray-400 hover:text-gray-600 duration-300"
+            className="text-gray-400 hover:text-gray-600 duration-300 flex gap-1"
           >
             Favourites
-            <span className="bg-sky-600/90  rounded-[50%] p-[.4rem] text-sm text-sky-100 ml-1 font-semibold">
-              {10}
+            <span className="w-[1.8rem] h-[1.8rem] bg-sky-600/90  rounded-[50%] flex justify-center items-center text-sm text-sky-100 font-semibold">
+              {savedItems.length}
             </span>
           </NavLink>
         </li>

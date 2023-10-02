@@ -75,6 +75,7 @@ const App = () => {
     <>
       <div className="App min-h-screen bg-rose-50 text-lg text-gray-600">
         <Navbar
+          savedItems={savedItems}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           inputField={inputField}
@@ -91,7 +92,12 @@ const App = () => {
           />
           <Route
             path="/recipe-item/:id"
-            element={<RecipeItem favouriteHandler={favouriteHandler} />}
+            element={
+              <RecipeItem
+                favouriteHandler={favouriteHandler}
+                savedItems={savedItems}
+              />
+            }
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
