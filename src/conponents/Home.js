@@ -1,11 +1,16 @@
 import Recipe from "./Recipe";
+import FryingPan from "./FryingPan";
+
 const Home = ({ recipes, loading, error }) => {
   return (
     <div className="home container mx-auto py-10 flex flex-wrap gap-10 justify-center">
       {!loading && !error && recipes.length === 0 ? (
-        <p className="text-2xl lg:text-4xl font-bold text-rose-300">
-          Nothing to show, please search somthing!
-        </p>
+        <div>
+          <p className="text-2xl lg:text-4xl font-bold text-rose-300">
+            Nothing to show, please search somthing!
+          </p>
+          <FryingPan />
+        </div>
       ) : null}
 
       {loading && <p>{error ? error : "Loading..."}</p>}
