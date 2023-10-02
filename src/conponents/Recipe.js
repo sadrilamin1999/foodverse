@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Recipe = ({ recipe }) => {
@@ -14,9 +13,11 @@ const Recipe = ({ recipe }) => {
         <samp className="publisher text-xs text-sky-400 uppercase font-semibold -tracking-widest">
           {recipe.publisher_url}
         </samp>
-        <h2 className="title truncate">{recipe.title}</h2>
+        <h2 className="title text-2xl font-semibold truncate">
+          {recipe.title}
+        </h2>
         <Link
-          to={`/recipe-item/${recipe.recipe_id}`}
+          to={`/recipe-item/${recipe.id}`}
           className="bg-gradient-to-br from-rose-400 to-rose-600 self-start text-rose-50 text-sm uppercase font-medium tracking-wider p-3 px-8 rounded-lg mt-2 inline-block shadow-md shadow-rose-200 hover:shadow-lg hover:shadow-rose-300 duration-300 "
         >
           View recipe
