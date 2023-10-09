@@ -72,7 +72,7 @@ const App = () => {
   }, [savedItems]);
 
   return (
-    <>
+    <div className="px-2 md:px-0">
       <div className="App min-h-screen bg-rose-50 text-lg text-gray-600">
         <Navbar
           savedItems={savedItems}
@@ -103,7 +103,7 @@ const App = () => {
         </Routes>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
